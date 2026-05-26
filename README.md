@@ -326,11 +326,10 @@ python3 my_dash_app/app.py
 
 ## 🚀 Possible Extensions
 
-* Integrate the RDS MySQL database to log all prediction history and build a scan dashboard.
-* Add email body phishing detection alongside URL detection.
-* Deploy the FastAPI backend to AWS using EC2 or App Runner.
-* Build a React/Next.js frontend for a more polished user interface.
-* Add the PhishTank live API integration when registration reopens.
-* Implement rate limiting on the FastAPI endpoints to prevent abuse.
-* Add GitHub Actions CI/CD for automated testing on every push.
-* Train on a larger dataset combining multiple phishing sources.
+* ## 🚀 Possible Extensions
+
+* **Full-Body Phishing Email Dataset Integration:** Expand the data pipeline to ingest email text headers and body text datasets (e.g., the Enron or Nazario phishing corpuses). This will allow the system to transition from a pure URL classifier to a multi-modal security platform analyzing both links and textual email context simultaneously.
+* **Production Deployment via Heroku or AWS App Runner:** Containerize the entire stack using the root `Dockerfile` to host the FastAPI backend and Dash frontend on a production-grade platform like Heroku or AWS App Runner for high availability and public access.
+* **SSL/TLS Certificate Implementation:** Provision a verified SSL/TLS certificate via Let's Encrypt (using Certbot) or AWS Certificate Manager (ACM) to transition the live platform from `http://` to `https://`. This guarantees secure, encrypted traffic for all incoming API queries and user dashboard interactions.
+* **Relational Database Logging:** Fully integrate the provisioned AWS RDS MySQL database instance to log a persistent history of scan transactions, allowing the system to populate historical metric cards dynamically.
+* **Rate Limiting & Threat Intelligence Webhooks:** Implement API throttling/rate limiting on the FastAPI endpoints using packages like `slowapi` to protect against denial-of-service abuse and setup outbound Discord/Slack webhooks for critical high-confidence phishing alerts.
