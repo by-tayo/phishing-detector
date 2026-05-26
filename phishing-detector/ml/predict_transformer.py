@@ -1,0 +1,36 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import torch
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, "models", "phishing-bert")
+
+model = AutoModelForSequenceClassification.from_pretrained(MODEL_DIR)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_DIR)
+model.eval()
+
+def predict_phishing(text: str):
+    inputs = tokenizer(
+        text,
+        return_tensors="pt",
+        truncation=True,
+        padding=True,
+        max_length=128
+    )
+    with torch.no_grad():
+        outputs = model(**inputs)
+    probabilities = torch.softmax(outputs.logits, dim=1)
+    prediction = torch.argmax(probabilities, dim=1).item()
+    confidence = probabilities[0][prediction].item()
+    return {
+        "input": text,
+        "is_phishing": bool(prediction),
+        "confidence": round(confidence, 4)
+    }
+
+if __name__ == "__main__":
+    test_url = "http://secure-login.verify-account.phishing.com"
+    result = predict_phishing(test_url)
+    print(result)
