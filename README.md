@@ -326,8 +326,6 @@ python3 my_dash_app/app.py
 
 ## 🚀 Possible Extensions
 
-* ## 🚀 Possible Extensions
-
 * **Full-Body Phishing Email Dataset Integration:** Expand the data pipeline to ingest email text headers and body text datasets (e.g., the Enron or Nazario phishing corpuses). This will allow the system to transition from a pure URL classifier to a multi-modal security platform analyzing both links and textual email context simultaneously.
 * **Production Deployment via Heroku or AWS App Runner:** Containerize the entire stack using the root `Dockerfile` to host the FastAPI backend and Dash frontend on a production-grade platform like Heroku or AWS App Runner for high availability and public access.
 * **SSL/TLS Certificate Implementation:** Provision a verified SSL/TLS certificate via Let's Encrypt (using Certbot) or AWS Certificate Manager (ACM) to transition the live platform from `http://` to `https://`. This guarantees secure, encrypted traffic for all incoming API queries and user dashboard interactions.
